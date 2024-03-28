@@ -1,0 +1,10 @@
+services:
+  database:
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "2345:5432"
+    container_name: bdong
+    restart: always

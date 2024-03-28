@@ -1,0 +1,5 @@
+npm init
+npm install prisma typescript ts-node @types/node --save-dev
+npm install express --save @types/express
+npm install nodemon @types/nodemon
+
