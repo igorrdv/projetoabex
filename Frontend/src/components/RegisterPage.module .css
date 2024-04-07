@@ -1,0 +1,17 @@
+body {
+  background: #c4d8fe;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+}
+
+.box {
+  width: 430px;
+  height: 600px;
+  border: #000000;
+  border-radius: 10px;
+  background: #fff;
+}

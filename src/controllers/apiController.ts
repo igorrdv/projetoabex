@@ -4,10 +4,6 @@ import bcrypt from "bcrypt";
 
 const prisma = new PrismaClient();
 
-export const ping = (req: Request, res: Response) => {
-  res.json({ pong: "true" });
-};
-
 export const registerUser = async (req: Request, res: Response) => {
   const { name, password, email, phone } = req.body;
 
@@ -53,7 +49,7 @@ export const userLogin = async (req: Request, res: Response) => {
   });
 
   if (!user) {
-    return res.status(404).send("User not found");
+    return res.status(404).send("Usuário não encontrado");
   }
 
   const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -68,19 +64,6 @@ export const userLogin = async (req: Request, res: Response) => {
 export const getUsers = async (req: Request, res: Response) => {
   const users = await prisma.user.findMany();
   res.json(users);
-};
-
-export const getUser = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const user = await prisma.user.findUnique({
-    where: {
-      id: Number(id),
-    },
-  });
-  if (!user) {
-    return res.status(404).send("Usuário não encontrado");
-  }
-  res.json(user);
 };
 
 export const updateUser = async (req: Request, res: Response) => {
@@ -122,9 +105,6 @@ export const getEvent = async (req: Request, res: Response) => {
     where: {
       id: Number(id),
     },
-    include: {
-      author: true,
-    },
   });
   if (!event) {
     return res.status(404).send("Evento não encontrado");
@@ -133,13 +113,13 @@ export const getEvent = async (req: Request, res: Response) => {
 };
 
 export const postEvent = async (req: Request, res: Response) => {
-  const { title, date, local, userId } = req.body;
+  const { title, date, local, user } = req.body;
   const newEvent = await prisma.event.create({
     data: {
       title,
       date: new Date(date),
       local,
-      userId: Number(userId),
+      user,
     },
   });
   res.json(newEvent);
@@ -147,7 +127,7 @@ export const postEvent = async (req: Request, res: Response) => {
 
 export const updateEvent = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { title, date, local, userId } = req.body;
+  const { title, date, local, user } = req.body;
   const updatedEvent = await prisma.event.update({
     where: {
       id: Number(id),
@@ -156,7 +136,7 @@ export const updateEvent = async (req: Request, res: Response) => {
       title,
       date: new Date(date),
       local,
-      userId: Number(userId),
+      user,
     },
   });
   res.json(updatedEvent);

@@ -1,9 +1,12 @@
 import express, { Request, Response } from "express";
+import cors from "cors";
 import dotenv from "dotenv";
 import { router } from "./routes/api";
 
 dotenv.config();
 const server = express();
+
+server.use(cors());
 server.use(express.urlencoded({ extended: true }));
 
 server.use(express.json());

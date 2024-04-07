@@ -19,7 +19,7 @@ model User {
   email String @unique
   password String
   phone String?
-  event Event[]
+
 }
 
 model Event {
@@ -27,6 +27,5 @@ model Event {
   title  String
   date  DateTime
   local String
-  userId Int
-  author User @relation(fields: [userId], references: [id])
+  user String @default("")
 }

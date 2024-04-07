@@ -4,8 +4,7 @@ export const router = Router();
 
 router.post("/register", ApiController.registerUser);
 router.post("/login", ApiController.userLogin);
-router.get("/", ApiController.getUsers);
-// router.get("/:id", ApiController.getUser);
+router.get("/users", ApiController.getUsers);
 router.put("/:id", ApiController.updateUser);
 router.delete("/:id", ApiController.deleteUser);
 router.post("/event/", ApiController.postEvent as any);
