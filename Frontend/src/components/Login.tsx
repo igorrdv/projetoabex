@@ -13,8 +13,8 @@ const Login = () => {
         email,
         password,
       });
-      sessionStorage.setItem("userId", id);
-      console.log("Usuário logado com sucesso:");
+
+      console.log("Usuário logado com sucesso");
     } catch (error) {
       console.error("Erro ao fazer login: ", error);
     }
