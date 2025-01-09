@@ -42,3 +42,5 @@ Pronto, o projeto está rodando em sua máquina. Abra no link que aparece em seu
 - /registrar
 - /eventos
 
+
+Contributing
